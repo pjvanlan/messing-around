@@ -1,0 +1,16 @@
+version: '3'
+services:
+  data_ingestor:
+    build: ./data_ingestor
+    ports:
+      - 5433:5432
+
+  forex_db:
+    image: timescale/timescaledb:latest-pg13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: timescaledb
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgresdata:/home/postgres/pgdata/data/
